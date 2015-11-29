@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.lsyiverson.terminator.R;
 import com.lsyiverson.terminator.databinding.MainActivityBinding;
@@ -30,14 +29,11 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(binding.toolbar);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Add a 'M'", Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show();
-                String originText = TextUtils.isEmpty(mainVM.getText()) ? "" : mainVM.getText();
-                mainVM.setText(originText + "M");
-            }
+        binding.fab.setOnClickListener(view -> {
+            Snackbar.make(view, "Add a 'M'", Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
+            String originText = TextUtils.isEmpty(mainVM.getText()) ? "" : mainVM.getText();
+            mainVM.setText(originText + "M");
         });
     }
 }
