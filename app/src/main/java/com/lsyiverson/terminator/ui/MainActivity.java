@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 
 import com.lsyiverson.terminator.R;
 import com.lsyiverson.terminator.databinding.MainActivityBinding;
@@ -32,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(view -> {
             Snackbar.make(view, "Add a 'M'", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
-            String originText = TextUtils.isEmpty(mainVM.getText()) ? "" : mainVM.getText();
-            mainVM.setText(originText + "M");
+            mainVM.addMChar();
         });
     }
 }
