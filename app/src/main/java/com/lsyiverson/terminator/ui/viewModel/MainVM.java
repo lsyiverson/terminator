@@ -19,8 +19,8 @@ public class MainVM extends BaseObservable {
         notifyPropertyChanged(BR.text);
     }
 
-    public void addMChar() {
+    public void addString(CharSequence charSequence) {
         StringBuilder originTextBuilder = new StringBuilder(Strings.isNullOrEmpty(getText()) ? "" : getText());
-        setText(originTextBuilder.append('M').toString());
+        setText(originTextBuilder.append(charSequence.toString()).toString());
     }
 }

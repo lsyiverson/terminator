@@ -4,7 +4,9 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.jakewharton.rxbinding.view.RxView;
 import com.lsyiverson.terminator.R;
 import com.lsyiverson.terminator.databinding.MainActivityBinding;
@@ -33,9 +35,17 @@ public class MainActivity extends AppCompatActivity {
 
         RxView.clicks(binding.fab)
             .throttleFirst(500, TimeUnit.MILLISECONDS)
-            .doOnEach(o ->
-                Snackbar.make(binding.fab, "Add a 'M'", Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show())
-            .subscribe(o -> mainVM.addMChar());
+            .subscribe(o -> showDialog());
+    }
+
+    private void showDialog() {
+        new MaterialDialog.Builder(this)
+            .title("input")
+            .inputType(InputType.TYPE_CLASS_TEXT)
+            .input("please input", null, (materialDialog, charSequence) -> mainVM.addString(charSequence))
+            .onPositive((materialDialog, dialogAction) ->
+                Snackbar.make(binding.fab, "Add " + materialDialog.getInputEditText().getText(), Snackbar.LENGTH_SHORT)
+                    .show())
+            .show();
     }
 }

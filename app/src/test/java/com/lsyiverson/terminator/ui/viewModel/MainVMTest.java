@@ -15,12 +15,12 @@ public class MainVMTest {
 
     @Test
     public void should_add_M_character_when_add_char() throws Exception {
-        mainVM.addMChar();
+        mainVM.addString("M");
 
         assertThat(mainVM.getText()).isEqualTo("M");
 
-        mainVM.addMChar();
+        mainVM.addString("test");
 
-        assertThat(mainVM.getText()).isEqualTo("MM");
+        assertThat(mainVM.getText()).isEqualTo("Mtest");
     }
 }
